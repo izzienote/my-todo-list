@@ -5,7 +5,7 @@ import { HOME_PAGE } from "@/constants/common";
 
 const Logo = () => {
   return (
-    <Link href={HOME_PAGE} className="flex justify-center">
+    <Link href={HOME_PAGE} className="flex justify-center mt-32">
       <Image
         src={LOGO}
         alt="투데이 투두 로고 이미지"
