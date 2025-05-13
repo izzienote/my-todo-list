@@ -2,6 +2,7 @@
 
 import { useAddTodo } from "@/lib/hooks/mutation";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const TodoForm = () => {
   // [투두 추가] : useAddTodo
@@ -14,7 +15,14 @@ const TodoForm = () => {
     e.preventDefault();
     addMutation.mutate({ title, content, isDone: false });
 
-    alert("할 일이 추가되었습니다!");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "할 일이 추가되었습니다!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+
     setContent("");
     setTitle("");
   };
