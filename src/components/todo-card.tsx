@@ -52,7 +52,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
             }
             className=" bg-green-700 rounded-md px-1 text-white text-xs"
           >
-            Done
+            Completed
           </button>
         ) : (
           <button
@@ -61,7 +61,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
             }
             className=" bg-red-400 rounded-md px-1 text-white text-xs"
           >
-            Not Done
+            Incomplete
           </button>
         )}
         {/* 수정 버튼 */}
