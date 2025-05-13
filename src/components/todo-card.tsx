@@ -1,7 +1,7 @@
 import { useDeleteTodo, useSwitchTodo } from "@/lib/hooks/mutation";
-import { SwitchTodo, Todo } from "@/types/todo";
 import { MdEdit } from "react-icons/md";
 import Swal from "sweetalert2";
+import type { SwitchTodo, Todo } from "@/types/todo";
 
 type TodoCardProps = {
   todo: Todo;
@@ -35,8 +35,9 @@ const TodoCard = ({ todo }: TodoCardProps) => {
   const hanldeSwitchTodo = ({ todoId, isDone }: SwitchTodo) => {
     switchMutation.mutate({ todoId, isDone });
   };
+
   return (
-    <article className="w-full h-full flex flex-col border border-black rounded-md px-5 py-5">
+    <article className="w-full max-w-96 h-full flex flex-col border border-black rounded-md px-5 py-5">
       {/* 타이틀 및 내용 */}
       <ul className="flex flex-col gap-3">
         <li className="font-bold text-black">{todo.title}</li>

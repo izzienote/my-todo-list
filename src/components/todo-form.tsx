@@ -38,6 +38,7 @@ const TodoForm = () => {
         className="min-w-72 px-3 py-1 border rounded-md text-slate-500"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
 
       <label className="w-full text-left text-black">Content</label>
@@ -47,6 +48,7 @@ const TodoForm = () => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         maxLength={300}
+        required
       />
       <div className="text-slate-500 text-right w-full">
         {content.length}/300 자
