@@ -45,7 +45,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
       </ul>
       <div className="flex flex-row gap-1 justify-end">
         {/* 완료 및 취소 토글 버튼 */}
-        {!todo.isDone ? (
+        {todo.isDone ? (
           <button
             onClick={() =>
               hanldeSwitchTodo({ todoId: todo.id, isDone: !todo.isDone })
@@ -61,7 +61,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
             }
             className=" bg-red-400 rounded-md px-1 text-white text-xs"
           >
-            Cancel
+            Not Done
           </button>
         )}
         {/* 수정 버튼 */}
