@@ -5,11 +5,13 @@ import TodoList from "@/components/todo-list";
 const TodoPage = () => {
   return (
     <div className="h-full px-5 min-h-screen flex flex-col justify-center items-center overflow-y-auto">
+      {/* 로고 */}
       <Logo />
       <p className="text-l mb-5">Today's To Do</p>
       <p className="text-gray-500 whitespace-pre-wrap mb-5">{introText}</p>
+      {/* 투두 인풋폼 */}
       <TodoForm />
-
+      {/* 투두 리스트 */}
       <div className="w-full border-b border-black my-16"></div>
       <TodoList />
     </div>
