@@ -6,3 +6,8 @@ export type Todo = {
 };
 
 export type TodoInput = Omit<Todo, "id">;
+
+export type SwitchTodo = {
+  todoId: string;
+  isDone: boolean;
+};
