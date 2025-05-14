@@ -1,10 +1,3 @@
 {
-  "todos": [
-    {
-      "id": "8bb3",
-      "title": "테스트",
-      "content": "수정",
-      "isDone": true
-    }
-  ]
+  "todos": []
 }
