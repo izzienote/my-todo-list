@@ -20,7 +20,7 @@ const TodoPage = async () => {
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="h-full px-5 min-h-screen flex flex-col justify-center items-center overflow-y-auto">
         <Logo />
-        <p className="text-l mb-5">Today's To Do</p>
+        <p className="text-l mb-5 text-yellow-950">Today&apos;s To Do</p>
         <p className="text-gray-500 whitespace-pre-wrap mb-5">{introText}</p>
         <TodoForm />
         {/* 구분선 */}
