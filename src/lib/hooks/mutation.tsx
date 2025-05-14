@@ -77,19 +77,27 @@ export const useSwitchTodo = () => {
 };
 
 /**
- * @function useUpdateTodo - [수정] 투두 수정하기
+ * @function useEditTodo - [수정] 투두 수정하기
  */
-export const useUpdateTodo = () => {
+export const useEditTodo = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ todoId, newTodo }: UpdateTodo) => {
+    mutationFn: async ({
+      todoId,
+      title,
+      content,
+    }: {
+      todoId: string;
+      title: string;
+      content: string;
+    }) => {
       const response = await fetch(`http://localhost:4000/todos/${todoId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newTodo),
+        body: JSON.stringify({ title, content }),
       });
 
       return response.json();
