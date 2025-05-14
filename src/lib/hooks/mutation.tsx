@@ -67,6 +67,9 @@ export const useSwitchTodo = () => {
     mutationFn: async ({ todoId, isDone }: SwitchTodo) => {
       const response = await fetch(`${API_URL}/${todoId}`, {
         method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ isDone }),
       });
       if (!response.ok)
