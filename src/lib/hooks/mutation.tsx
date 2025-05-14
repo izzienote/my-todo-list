@@ -2,6 +2,8 @@ import { QUERY_KEY } from "@/constants/query-key";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { EditTodo, SwitchTodo, TodoInput } from "@/types/todo";
 
+const API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}`;
+
 /**
  * @function useAddTodo
  * @description [추가] 새로운 투두 생성
@@ -11,7 +13,7 @@ export const useAddTodo = () => {
 
   return useMutation({
     mutationFn: async (newTodo: TodoInput) => {
-      const response = await fetch("http://localhost:4000/todos", {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +41,7 @@ export const useDeleteTodo = () => {
 
   return useMutation({
     mutationFn: async (todoId: string) => {
-      const response = await fetch(`http://localhost:4000/todos/${todoId}`, {
+      const response = await fetch(`${API_URL}/${todoId}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("투두 삭제에 실패했습니다.");
@@ -63,7 +65,7 @@ export const useSwitchTodo = () => {
 
   return useMutation({
     mutationFn: async ({ todoId, isDone }: SwitchTodo) => {
-      const response = await fetch(`http://localhost:4000/todos/${todoId}`, {
+      const response = await fetch(`${API_URL}/${todoId}`, {
         method: "PATCH",
         body: JSON.stringify({ isDone }),
       });
@@ -89,7 +91,7 @@ export const useEditTodo = () => {
 
   return useMutation({
     mutationFn: async ({ todoId, title, content }: EditTodo) => {
-      const response = await fetch(`http://localhost:4000/todos/${todoId}`, {
+      const response = await fetch(`${API_URL}/${todoId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
