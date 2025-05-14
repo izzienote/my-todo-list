@@ -38,7 +38,7 @@ const EditModal = ({ todo, onClose }: EditModalProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white w-full p-5 flex flex-col border border-black rounded-md text-slate-800 gap-3 justify-center items-center"
+      className="bg-white w-full p-5 flex flex-col border border-black rounded-md text-slate-800 gap-3 justify-center items-center md:max-w-screen-md"
     >
       <div className="w-full flex flew-row justify-between">
         <strong className="text-xl">할 일 수정하기</strong>

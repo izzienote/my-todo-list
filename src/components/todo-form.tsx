@@ -38,6 +38,7 @@ const TodoForm = () => {
         className="min-w-72 px-3 py-1 border rounded-md text-slate-500"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        maxLength={30}
         required
       />
 
