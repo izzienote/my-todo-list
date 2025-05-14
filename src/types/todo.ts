@@ -12,9 +12,10 @@ export type SwitchTodo = {
   isDone: boolean;
 };
 
-export type UpdateTodo = {
+export type EditTodo = {
   todoId: string;
-  newTodo: TodoInput;
+  title: string;
+  content: string;
 };
 
 export type ToDoFilterType = "전체" | "완료" | "미완료";

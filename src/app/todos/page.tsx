@@ -1,20 +1,33 @@
 import Logo from "@/components/logo";
 import TodoForm from "@/components/todo-form";
 import TodoList from "@/components/todo-list";
+import { QUERY_KEY } from "@/constants/query-key";
+import { getTodos } from "@/lib/utils/get-todos.util";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
-const TodoPage = () => {
+const TodoPage = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: [QUERY_KEY.TODOS],
+    queryFn: getTodos,
+  });
+
   return (
-    <div className="h-full px-5 min-h-screen flex flex-col justify-center items-center overflow-y-auto">
-      {/* 로고 */}
-      <Logo />
-      <p className="text-l mb-5">Today's To Do</p>
-      <p className="text-gray-500 whitespace-pre-wrap mb-5">{introText}</p>
-      {/* 투두 인풋폼 */}
-      <TodoForm />
-      {/* 투두 리스트 */}
-      <div className="w-full border-b border-black my-16"></div>
-      <TodoList />
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <div className="h-full px-5 min-h-screen flex flex-col justify-center items-center overflow-y-auto">
+        <Logo />
+        <p className="text-l mb-5">Today's To Do</p>
+        <p className="text-gray-500 whitespace-pre-wrap mb-5">{introText}</p>
+        <TodoForm />
+        {/* 구분선 */}
+        <div className="w-full border-b border-black my-16"></div>
+        <TodoList />
+      </div>
+    </HydrationBoundary>
   );
 };
 

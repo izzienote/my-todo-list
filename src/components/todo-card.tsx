@@ -1,7 +1,9 @@
 import { useDeleteTodo, useSwitchTodo } from "@/lib/hooks/mutation";
 import { MdEdit } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useState } from "react";
 import type { SwitchTodo, Todo } from "@/types/todo";
+import EditModal from "./edit-modal";
 
 type TodoCardProps = {
   todo: Todo;
@@ -10,6 +12,7 @@ type TodoCardProps = {
 const TodoCard = ({ todo }: TodoCardProps) => {
   const deleteMutation = useDeleteTodo();
   const switchMutation = useSwitchTodo();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const handleDeleteTodo = (todoId: string) => {
     Swal.fire({
@@ -65,7 +68,10 @@ const TodoCard = ({ todo }: TodoCardProps) => {
           </button>
         )}
         {/* 수정 버튼 */}
-        <button className="h-5 w-5 items-center justify-center flex bg-orange-400 rounded-full text-white">
+        <button
+          onClick={() => setIsEditModalOpen(true)}
+          className="h-5 w-5 items-center justify-center flex bg-orange-400 rounded-full text-white"
+        >
           <MdEdit />
         </button>
         {/* 삭제 버튼 */}
@@ -76,6 +82,12 @@ const TodoCard = ({ todo }: TodoCardProps) => {
           <div className="font-semibold">&times;</div>
         </button>
       </div>
+      {/* 수정 모달 컴포넌트 */}
+      {isEditModalOpen && (
+        <div className="px-5 fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
+          <EditModal todo={todo} onClose={() => setIsEditModalOpen(false)} />
+        </div>
+      )}
     </article>
   );
 };

@@ -12,6 +12,7 @@ const Logo = () => {
         height={50}
         style={{ height: "auto" }}
         className="rounded-full"
+        priority={false}
       />
     </Link>
   );
