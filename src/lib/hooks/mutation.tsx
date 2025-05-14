@@ -1,6 +1,6 @@
 import { QUERY_KEY } from "@/constants/query-key";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import type { SwitchTodo, TodoInput, UpdateTodo } from "@/types/todo";
+import type { SwitchTodo, TodoInput } from "@/types/todo";
 
 /**
  * @function useAddTodo - [추가] 새로운 투두 생성
