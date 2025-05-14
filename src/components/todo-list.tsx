@@ -48,7 +48,7 @@ const TodoList = () => {
             : noIncompletedText}
         </div>
       ) : (
-        <article className="w-full gap-3 flex flex-row flex-wrap items-center justify-start">
+        <article className="w-full h-full gap-3 flex flex-row flex-wrap items-center justify-start">
           {filteredTodos.map((todo) => (
             <TodoCard key={todo.id} todo={todo} />
           ))}

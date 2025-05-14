@@ -34,20 +34,24 @@ const TodoCard = ({ todo }: TodoCardProps) => {
   };
 
   return (
-    <article className="w-full max-w-96 h-full flex flex-col border border-black rounded-md px-5 py-5">
+    <article className="w-full h-44 max-w-96 flex flex-col border border-black rounded-md px-5 py-5 relative">
       {/* 타이틀 및 내용 */}
       <ul className="flex flex-col gap-3">
-        <li className="font-bold text-black">{todo.title}</li>
-        <li className="text-black overflow-y-auto max-h-14">{todo.content}</li>
+        <li className="font-bold text-black line-clamp-2 break-words whitespace-pre-wrap">
+          {todo.title}
+        </li>
+        <li className="text-black overflow-y-auto max-h-14 break-words whitespace-pre-wrap">
+          {todo.content}
+        </li>
       </ul>
-      <div className="flex flex-row gap-1 justify-end">
+      <div className="absolute bottom-3 right-3 flex flex-row gap-1 justify-end">
         {/* 완료 및 취소 토글 버튼 */}
         {todo.isDone ? (
           <button
             onClick={() =>
               hanldeSwitchTodo({ todoId: todo.id, isDone: !todo.isDone })
             }
-            className=" bg-green-700 rounded-md px-1 text-white text-xs hover:bg-green-800 hover:scale-105 duration-200"
+            className=" bg-green-700 rounded-md px-1 text-white text-xs hover:bg-green-800 hover:scale-105 duration-200 "
           >
             Completed
           </button>
@@ -80,7 +84,7 @@ const TodoCard = ({ todo }: TodoCardProps) => {
       </div>
       {/* 수정 모달 컴포넌트 */}
       {isEditModalOpen && (
-        <div className="px-5 fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
+        <div className="px-5 fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-10">
           <EditModal todo={todo} onClose={() => setIsEditModalOpen(false)} />
         </div>
       )}
