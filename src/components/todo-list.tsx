@@ -3,14 +3,15 @@
 import TodoCard from "@/components/todo-card";
 import { useTodos } from "@/lib/hooks/queries";
 import { useState } from "react";
+import LoadingPage from "@/app/loading";
 import type { ToDoFilterType } from "@/types/todo";
 
 const TodoList = () => {
   const { data: todos = [], isPending, isError } = useTodos();
   const [filter, setFilter] = useState<ToDoFilterType>("전체");
 
-  if (isPending) return <div>Loading...</div>;
-  if (isError) return <div>에러발생</div>;
+  if (isPending) return <LoadingPage />;
+  if (isError) throw new Error("데이터를 가져오는 데 실패했습니다.");
 
   const filteredTodos = todos.filter((todo) => {
     if (filter === "전체") return true;
@@ -40,7 +41,11 @@ const TodoList = () => {
       {/* todo 유무에 따른 UI 배치 */}
       {filteredTodos.length === 0 ? (
         <div className="text-slate-700 w-full min-h-80 bg-black bg-opacity-20 rounded-md flex items-center justify-center whitespace-pre-wrap text-center">
-          {noRecordText}
+          {filter === "전체"
+            ? noRecordText
+            : filter === "완료"
+            ? noCompletedText
+            : noIncompletedText}
         </div>
       ) : (
         <article className="w-full gap-3 flex flex-row flex-wrap items-center justify-start">
@@ -55,5 +60,9 @@ const TodoList = () => {
 
 export default TodoList;
 
-const noRecordText = `앗! 작성된 투두 리스트가 없어요.
-새로 작성해볼까요?`;
+const noRecordText = `앗! 아직 작성된 투두가 없어요.
+하고 싶은 일을 하나 적어볼까요?`;
+const noCompletedText = `앗! 아직 완료된 투두가 없어요.
+천천히 하나씩 마무리해볼까요?`;
+const noIncompletedText = `모든 투두를 완료하셨어요!
+정말 멋져요. 새로운 계획을 세워볼까요?`;
